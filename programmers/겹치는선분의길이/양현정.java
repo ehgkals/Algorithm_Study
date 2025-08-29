@@ -12,7 +12,7 @@ class Solution {
                 totalLine[i]++;
                 if(totalLine[i] == 2) cnt++;
             }
-            if(cnt > 0) answer += cnt;
+            answer += cnt;
         }
 
         return answer;
