@@ -24,11 +24,12 @@ public class Main {
 		for (int i = 0; i < input.length(); i++) {
 			char c = input.charAt(i);
 			
-			// 숫자면 걍 출력 배열에 넣음
+			// 문자면 걍 출력 배열에 넣음
 			if(Character.isLetter(c)) {
 				answer.append(c);
 			}
-			else { // 연산자이면		
+			else { // 연산자이면	
+            	// 연산자 우선순위 먼저 고려
 				stack.push(c);
 				
 				if(c == '(') {
