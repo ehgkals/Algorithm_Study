@@ -23,6 +23,7 @@ public class 사혜빈 {
 		Collections.sort(max, Collections.reverseOrder());
 		System.out.print(max.get(0));
 		
+        // 오름차순으로 바꾸면 sort 두 번 안해도 되어요.
 
 
 		
