@@ -6,7 +6,7 @@ using namespace std;
 int T;
 string S;
 
-static inline bool isPal(int l, int r)
+static bool isPal(int l, int r)
 {
     while (l < r)
     {

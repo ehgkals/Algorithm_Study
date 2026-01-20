@@ -1,54 +1,46 @@
 #include <iostream>
+#include <deque>
 #include <cstring>
 
 using namespace std;
 
-int T;
-string S;
+string S, T;
 
-static inline bool isPal(int l, int r)
-{
-    while (l < r)
-    {
-        if (S[l] != S[r])
-            return false;
-        l++;
-        r--;
-    }
-    return true;
-}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
-    cin >> T;
-    while (T--)
+    cin >> S >> T;
+    size_t ssz = S.length();
+    deque<char> dq;
+    for (char c : T)
     {
-        cin >> S;
-        int l = 0;
-        int r = (int)S.size() - 1;
-        while (l < r && S[l] == S[r])
-        {
-            l++;
-            r--;
-        }
+        dq.push_back(c);
+    }
 
-        if (l >= r)
-        {
-            cout << 0 << '\n';
-            continue;
-        }
-
-        if (isPal(l + 1, r) || isPal(l, r - 1))
-        {
-            cout << 1 << '\n';
-        }
+    bool rev = false;
+    while (ssz < dq.size())
+    {
+        char last = (!rev ? dq.back() : dq.front());
+        if (!rev)
+            dq.pop_back();
         else
+            dq.pop_front();
+
+        if (last == 'B')
+            rev = !rev;
+    }
+    for (int i = 0; i < (int)S.size(); ++i)
+    {
+        char c = (!rev ? dq[i] : dq[dq.size() - 1 - i]);
+        if (c != S[i])
         {
-            cout << 2 << '\n';
+            cout << 0;
+            return 0;
         }
     }
+    cout << 1;
+
     return 0;
 }
