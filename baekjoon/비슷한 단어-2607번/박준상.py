@@ -1,18 +1,20 @@
 import sys
-from collections import Counter
+
 input = sys.stdin.readline
 
-N = int(input())
-w = input().strip()
-cw = Counter(w)
-aws = 0
+n = int(input())
+dp = [0] * (n + 1)
 
-for _ in range(N - 1):
-    s = input().strip()
-    cs = Counter(s)
-    diff = sum((cw - cs).values()) + sum((cs - cw).values())
+for i in range(1, int(n ** 0.5) + 1):
+    dp[i ** 2] = 1
 
-    if diff <= 2 and abs(len(w) - len(s)) <= 1:
-        aws += 1
+for i in range(1, n + 1):
+    if dp[i] != 0:
+        continue
+    for j in range(1, int(i ** 0.5) + 1):
+        if dp[i] == 0:
+            dp[i] = dp[j ** 2] + dp[i - j ** 2]
+            continue
+        dp[i] = min(dp[i], dp[j ** 2] + dp[i - j ** 2])
 
-print(aws)
+print(dp[n])
