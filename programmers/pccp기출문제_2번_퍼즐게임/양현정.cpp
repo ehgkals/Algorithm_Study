@@ -22,9 +22,7 @@ int solution(vector<int> diffs, vector<int> times, long long limit)
             loopCnt = diffs[i] - level;
             prev = i > 0 ? times[i - 1] : 0;
             if (loopCnt > 0)
-            { // 반복
                 sum += loopCnt * (times[i] + prev);
-            }
             sum += times[i];
         }
         if (sum < limit)
@@ -33,14 +31,9 @@ int solution(vector<int> diffs, vector<int> times, long long limit)
             answer = level;
         }
         else if (sum > limit)
-        {
             lt = level + 1;
-        }
         else
-        {
             return level;
-        }
     }
-
     return answer;
 }
